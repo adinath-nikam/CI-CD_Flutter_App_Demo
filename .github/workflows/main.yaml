@@ -62,7 +62,7 @@ jobs:
 
       #10 Get those Build to be available to download
       - name: Upload Artifacts
-        uses: actions/upload-artifacts@v2
+        uses: actions/upload-artifact@v2
         with:
           name: Releases
           path:
