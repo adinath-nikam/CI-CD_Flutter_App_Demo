@@ -37,7 +37,7 @@ jobs:
 
       #4 Install Dependencies
       - name: Install Dependencies
-        uses: flutter pub get
+        run: flutter pub get
 
       #6 Run Test
       - name: Test Flutter App
