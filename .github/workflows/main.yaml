@@ -53,7 +53,7 @@ jobs:
 
      #9 Build IPA
       - name: Build IPA
-        run: pwd && ls
+        run: cd build && ls
 
       #10 Get those Build to be available to download
       - name: Upload Artifacts
