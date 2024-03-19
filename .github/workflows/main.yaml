@@ -53,7 +53,7 @@ jobs:
 
      #9 Build IPA
       - name: Build IPA
-        run: cd build && ls
+        run: cd build/app/outputs/flutter-apk && ls
 
       #10 Get those Build to be available to download
       - name: Upload Artifacts
@@ -61,14 +61,14 @@ jobs:
         with:
           name: Releases
           path:
-            ./build/app/outputs/flutter-apk/app-release.apk
-            ./build/app/outputs/bundle/release/app-release.aab
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
 #            build/ios_build.tar.gz
 
       #12 Create Release with Those Builds
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "./build/app/outputs/flutter-apk/app-release.apk"
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.CI_CD_SECRET_TOKEN_FOR_FLUTTER_APP_DEMO }}
