@@ -53,7 +53,7 @@ jobs:
 
      #9 Build IPA
       - name: Build IPA
-        run: cd build/app/outputs/flutter-apk && ls
+        run: echo ${{secrets.GITHUB_TOKEN}}
 
       #10 Get those Build to be available to download
       - name: Upload Artifacts
@@ -69,5 +69,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          tag: v1.0.${{github.run_number}}
-          token: ${{secrets.DEMO_TOKEN}}
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
