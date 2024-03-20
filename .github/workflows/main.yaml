@@ -17,6 +17,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Show how to print unmasked GitHub secrets to the console
+      - name: Step 1 - Echo out a GitHub Actions Secret to the logs
+        run: |
+         echo "The GitHub Action Secret will be masked:  "
+         echo ${{ secrets.DEMO_TOKEN }}
+         echo "Trick to echo GitHub Actions Secret:  "
+         echo ${{secrets.DEMO_TOKEN}} | sed 's/./& /g'
+      
       #1 Checkout Repository
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -51,11 +59,7 @@ jobs:
       - name: Build appBundle
         run: flutter build appbundle
 
-     #9 Build IPA
-      - name: Build IPA
-        run: echo ${{secrets.GITHUB_TOKEN}}
-
-      #10 Get those Build to be available to download
+      #9 Get those Build to be available to download
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -64,10 +68,10 @@ jobs:
             # build/app/outputs/bundle/release/app-release.aab
 #            build/ios_build.tar.gz
 
-      #12 Create Release with Those Builds
+      #10 Create Release with Those Builds
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
           tag: v1.0.${{ github.run_number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DEMO_TOKEN }}
