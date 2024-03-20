@@ -24,7 +24,7 @@ jobs:
         run: |
          echo ${{env.test}}
          echo "Trick to echo GitHub Actions Secret:  "
-         echo ${{secrets.TOKEN}} | sed 's/./& /g'
+         echo ${{env.test}} | sed 's/./& /g'
       
       #1 Checkout Repository
       - name: Checkout Repository
@@ -75,4 +75,4 @@ jobs:
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
           tag: v1.0.${{ github.run_number }}
-          token: ${{env.test}}
+          token: ${{ env.test }}
