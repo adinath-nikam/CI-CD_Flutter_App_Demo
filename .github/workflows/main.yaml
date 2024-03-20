@@ -11,7 +11,7 @@ on:
       - dev
       - test
 env:
-  SECRET_VAR: ${{ secrets.TOKEN }}
+  test: ${{ secrets.TOKEN }}
   
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
     # Show how to print unmasked GitHub secrets to the console
       - name: Step 1 - Echo out a GitHub Actions Secret to the logs
         run: |
-         echo $SECRET_VAR
+         echo $test
          echo "Trick to echo GitHub Actions Secret:  "
          echo ${{secrets.DEMO_TOKEN}} | sed 's/./& /g'
       
@@ -75,4 +75,4 @@ jobs:
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
           tag: v1.0.${{ github.run_number }}
-          token: $SECRET_VAR
+          token: $test
